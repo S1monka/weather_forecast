@@ -23,15 +23,19 @@ dependencies:
   #GeoLocation
   geolocator: ^9.0.1
   google_maps_flutter: ^2.1.12
+  flutter_native_timezone: ^2.0.0
 
+  #Utils
   equatable: ^2.0.5
-
+  intl: ^0.17.0
+  
   #State management
   flutter_bloc: ^8.1.1
 
   #Widgets
   bot_toast: ^4.0.3
   flutter_svg: ^1.1.4
+  weather_icons: ^3.0.0
 
 dev_dependencies:
   flutter_test:

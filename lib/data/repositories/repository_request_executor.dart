@@ -31,7 +31,12 @@ class RepositoryRequestExecutor {
         throw const ConnectionFailure();
       }
       if (e.response != null) {
-        throw ServerFailure(e.response!.statusCode as int);
+        final reason = (e.response!.data as Map)['reason'];
+        if (reason != null) {
+          throw Failure(reason);
+        } else {
+          throw ServerFailure(e.response!.statusCode as int);
+        }
       }
       throw const UnknownFailure();
     }
