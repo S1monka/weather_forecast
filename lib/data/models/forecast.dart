@@ -7,10 +7,13 @@ class Forecast {
   final HourlyWeatherList hourlyWeather;
   final DailyWeatherList dailyWeather;
 
+  final String timezone;
+
   Forecast(
     this.currentWeather,
     this.hourlyWeather,
     this.dailyWeather,
+    this.timezone,
   );
 
   factory Forecast.fromJson(Map<String, dynamic> json) {
@@ -21,10 +24,13 @@ class Forecast {
 
     final dailyWeatherList = DailyWeatherList.fromJson(json['daily']);
 
+    final timezone = (json['timezone'] as String).split('/').join(', ');
+
     return Forecast(
       currentWeather,
       hourlyWeatherList,
       dailyWeatherList,
+      timezone,
     );
   }
 }

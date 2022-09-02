@@ -1,5 +1,5 @@
-import 'weather_data.dart';
 import 'weather_data_with_temperature.dart';
+import 'weather_status.dart';
 
 class HourlyWeatherList {
   final List<WeatherDataWithTemperature> data;
@@ -17,10 +17,11 @@ class HourlyWeatherList {
 
     for (int index = 0; index < _hoursCount; index++) {
       final time = DateTime.parse(timeList[index]);
-      final weatherStatus = WeatherData.weatherStatusfromDouble(
-        weatherCodeList[index],
+      final weatherStatus = WeatherStatus.fromData(
+        weatherCode: weatherCodeList[index],
+        time: time,
       );
-      final temperature = temperatureList[index];
+      final temperature = (temperatureList[index] as double).toInt();
 
       data.add(
         WeatherDataWithTemperature(

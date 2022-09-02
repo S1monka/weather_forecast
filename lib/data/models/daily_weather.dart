@@ -1,13 +1,14 @@
 import 'package:weather_forecast/core/utils/constants.dart';
 
 import 'weather_data.dart';
+import 'weather_status.dart';
 
 class DailyWeather extends WeatherData {
-  final double maxTemperature;
-  final double minTemperature;
+  final int maxTemperature;
+  final int minTemperature;
 
-  String get formattedMaxTemperature => '$maxTemperature$temperatureUnit';
-  String get formattedMinTemperature => '$minTemperature$temperatureUnit';
+  String get formatterDayTemperature =>
+      '$minTemperature\u00B0/$maxTemperature$temperatureUnit';
 
   DailyWeather({
     required super.time,
@@ -35,11 +36,12 @@ class DailyWeatherList {
 
     for (int index = 0; index < _daysCount; index++) {
       final time = DateTime.parse(timeList[index]);
-      final weatherStatus = WeatherData.weatherStatusfromDouble(
-        weatherCodeList[index],
+      final weatherStatus = WeatherStatus.fromData(
+        weatherCode: weatherCodeList[index],
+        time: time,
       );
-      final maxTemperature = maxTemperatureList[index];
-      final minTemperature = minTemperatureList[index];
+      final maxTemperature = (maxTemperatureList[index] as double).toInt();
+      final minTemperature = (minTemperatureList[index] as double).toInt();
 
       data.add(
         DailyWeather(
